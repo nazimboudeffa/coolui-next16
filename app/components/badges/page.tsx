@@ -4,20 +4,22 @@ import { useState, ReactNode } from 'react';
 import Link from 'next/link';
 
 interface ComponentVariation {
+  id: string;
   name: string;
   component: ReactNode;
   code: string;
 }
 
 export default function BadgesPage() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
-  const toggleCode = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const toggleCode = (id: string) => {
+    setExpandedIndex(expandedIndex === id ? null : id);
   };
 
   const variations: ComponentVariation[] = [
     {
+      id: 'status-badges',
       name: 'Status Badges',
       component: (
         <div className="flex flex-wrap gap-2">
@@ -45,6 +47,7 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'solid-badges',
       name: 'Solid Badges',
       component: (
         <div className="flex flex-wrap gap-2">
@@ -72,6 +75,7 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'outline-badges',
       name: 'Outline Badges',
       component: (
         <div className="flex flex-wrap gap-2">
@@ -99,19 +103,20 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'dot-badges',
       name: 'Dot Badges',
       component: (
         <div className="flex flex-wrap gap-3">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>{' '}
             Online
           </span>
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-            <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+            <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>{' '}
             Away
           </span>
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+            <span className="w-2 h-2 bg-red-500 rounded-full"></span>{' '}
             Offline
           </span>
         </div>
@@ -132,15 +137,16 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'number-badges',
       name: 'Number Badges',
       component: (
         <div className="flex flex-wrap gap-3">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-            Messages
+            Messages{' '}
             <span className="px-2 py-0.5 bg-blue-500 text-white rounded-full text-xs">5</span>
           </span>
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">
-            Alerts
+            Alerts{' '}
             <span className="px-2 py-0.5 bg-red-500 text-white rounded-full text-xs">12</span>
           </span>
         </div>
@@ -157,11 +163,12 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'removable-badges',
       name: 'Removable Badges',
       component: (
         <div className="flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-            JavaScript
+            JavaScript{' '}
             <button className="hover:bg-blue-200 rounded-full p-0.5 transition-colors">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -169,7 +176,7 @@ export default function BadgesPage() {
             </button>
           </span>
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-            React
+            React{' '}
             <button className="hover:bg-green-200 rounded-full p-0.5 transition-colors">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -190,10 +197,11 @@ export default function BadgesPage() {
 </div>`
     },
     {
+      id: 'gradient-badges',
       name: 'Gradient Badges',
       component: (
         <div className="flex flex-wrap gap-2">
-          <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
+          <span className="px-3 py-1 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
             Premium
           </span>
           <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full text-sm font-medium">
@@ -205,7 +213,7 @@ export default function BadgesPage() {
         </div>
       ),
       code: `<div className="flex gap-2">
-  <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
+  <span className="px-3 py-1 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
     Premium
   </span>
   <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full text-sm font-medium">
@@ -241,9 +249,9 @@ export default function BadgesPage() {
         </header>
 
         <div className="space-y-8">
-          {variations.map((variation, index) => (
+          {variations.map((variation) => (
             <div
-              key={index}
+              key={variation.id}
               className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl"
             >
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -255,13 +263,13 @@ export default function BadgesPage() {
               </div>
 
               <button
-                onClick={() => toggleCode(index)}
+                onClick={() => toggleCode(variation.id)}
                 className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                {expandedIndex === index ? 'Hide Code' : 'Show Code'}
+                {expandedIndex === variation.id ? 'Hide Code' : 'Show Code'}
               </button>
 
-              {expandedIndex === index && (
+              {expandedIndex === variation.id && (
                 <div className="mt-4 p-4 bg-gray-900 rounded-lg overflow-x-auto">
                   <pre className="text-sm text-gray-100">
                     <code>{variation.code}</code>

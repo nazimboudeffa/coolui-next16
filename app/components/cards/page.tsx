@@ -4,20 +4,22 @@ import { useState, ReactNode } from 'react';
 import Link from 'next/link';
 
 interface ComponentVariation {
+  id: string;
   name: string;
   component: ReactNode;
   code: string;
 }
 
 export default function CardsPage() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
-  const toggleCode = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const toggleCode = (id: string) => {
+    setExpandedIndex(expandedIndex === id ? null : id);
   };
 
   const variations: ComponentVariation[] = [
     {
+      id: 'basic-card',
       name: 'Basic Card',
       component: (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-gray-200 max-w-sm w-full">
@@ -31,6 +33,7 @@ export default function CardsPage() {
 </div>`
     },
     {
+      id: 'card-with-image',
       name: 'Card with Image',
       component: (
         <div className="bg-white rounded-xl shadow-lg overflow-hidden max-w-sm w-full">
@@ -50,6 +53,7 @@ export default function CardsPage() {
 </div>`
     },
     {
+      id: 'card-with-button',
       name: 'Card with Button',
       component: (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-gray-200 max-w-sm w-full">
@@ -69,6 +73,7 @@ export default function CardsPage() {
 </div>`
     },
     {
+      id: 'gradient-card',
       name: 'Gradient Card',
       component: (
         <div className="p-6 bg-gradient-to-br from-pink-500 to-orange-500 rounded-xl shadow-lg max-w-sm w-full">
@@ -82,6 +87,7 @@ export default function CardsPage() {
 </div>`
     },
     {
+      id: 'profile-card',
       name: 'Profile Card',
       component: (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-gray-200 max-w-sm w-full text-center">
@@ -107,6 +113,7 @@ export default function CardsPage() {
 </div>`
     },
     {
+      id: 'hover-card',
       name: 'Hover Card',
       component: (
         <div className="p-6 bg-white rounded-xl shadow-md border border-gray-200 max-w-sm w-full hover:shadow-2xl hover:scale-105 transition-all cursor-pointer">
@@ -144,9 +151,9 @@ export default function CardsPage() {
         </header>
 
         <div className="space-y-8">
-          {variations.map((variation, index) => (
+          {variations.map((variation) => (
             <div
-              key={index}
+              key={variation.id}
               className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl"
             >
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -158,13 +165,13 @@ export default function CardsPage() {
               </div>
 
               <button
-                onClick={() => toggleCode(index)}
+                onClick={() => toggleCode(variation.id)}
                 className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                {expandedIndex === index ? 'Hide Code' : 'Show Code'}
+                {expandedIndex === variation.id ? 'Hide Code' : 'Show Code'}
               </button>
 
-              {expandedIndex === index && (
+              {expandedIndex === variation.id && (
                 <div className="mt-4 p-4 bg-gray-900 rounded-lg overflow-x-auto">
                   <pre className="text-sm text-gray-100">
                     <code>{variation.code}</code>

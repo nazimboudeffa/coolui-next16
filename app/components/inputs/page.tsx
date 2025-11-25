@@ -4,20 +4,22 @@ import { useState, ReactNode } from 'react';
 import Link from 'next/link';
 
 interface ComponentVariation {
+  id: string;
   name: string;
   component: ReactNode;
   code: string;
 }
 
 export default function InputsPage() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
-  const toggleCode = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const toggleCode = (id: string) => {
+    setExpandedIndex(expandedIndex === id ? null : id);
   };
 
   const variations: ComponentVariation[] = [
     {
+      id: 'basic-input',
       name: 'Basic Input',
       component: (
         <input
@@ -33,13 +35,15 @@ export default function InputsPage() {
 />`
     },
     {
+      id: 'input-with-label',
       name: 'Input with Label',
       component: (
         <div className="w-full max-w-sm">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="email-input" className="block text-sm font-medium text-gray-700 mb-2">
             Email Address
           </label>
           <input
+            id="email-input"
             type="email"
             placeholder="you@example.com"
             className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
@@ -58,6 +62,7 @@ export default function InputsPage() {
 </div>`
     },
     {
+      id: 'input-with-icon',
       name: 'Input with Icon',
       component: (
         <div className="relative w-full max-w-sm">
@@ -87,6 +92,7 @@ export default function InputsPage() {
 </div>`
     },
     {
+      id: 'textarea',
       name: 'Textarea',
       component: (
         <textarea
@@ -102,6 +108,7 @@ export default function InputsPage() {
 />`
     },
     {
+      id: 'select-dropdown',
       name: 'Select Dropdown',
       component: (
         <select className="w-full max-w-sm px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-white">
@@ -143,9 +150,9 @@ export default function InputsPage() {
         </header>
 
         <div className="space-y-8">
-          {variations.map((variation, index) => (
+          {variations.map((variation) => (
             <div
-              key={index}
+              key={variation.id}
               className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl"
             >
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -157,13 +164,13 @@ export default function InputsPage() {
               </div>
 
               <button
-                onClick={() => toggleCode(index)}
+                onClick={() => toggleCode(variation.id)}
                 className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                {expandedIndex === index ? 'Hide Code' : 'Show Code'}
+                {expandedIndex === variation.id ? 'Hide Code' : 'Show Code'}
               </button>
 
-              {expandedIndex === index && (
+              {expandedIndex === variation.id && (
                 <div className="mt-4 p-4 bg-gray-900 rounded-lg overflow-x-auto">
                   <pre className="text-sm text-gray-100">
                     <code>{variation.code}</code>

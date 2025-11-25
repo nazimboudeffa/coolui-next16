@@ -4,20 +4,22 @@ import { useState, ReactNode } from 'react';
 import Link from 'next/link';
 
 interface ComponentVariation {
+  id: string;
   name: string;
   component: ReactNode;
   code: string;
 }
 
 export default function ButtonsPage() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
-  const toggleCode = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const toggleCode = (id: string) => {
+    setExpandedIndex(expandedIndex === id ? null : id);
   };
 
   const variations: ComponentVariation[] = [
     {
+      id: 'primary-button',
       name: 'Primary Button',
       component: (
         <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
@@ -29,6 +31,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'secondary-button',
       name: 'Secondary Button',
       component: (
         <button className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium">
@@ -40,6 +43,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'outline-button',
       name: 'Outline Button',
       component: (
         <button className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors font-medium">
@@ -51,6 +55,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'gradient-button',
       name: 'Gradient Button',
       component: (
         <button className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all font-medium">
@@ -62,6 +67,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'rounded-button',
       name: 'Rounded Button',
       component: (
         <button className="px-6 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors font-medium">
@@ -73,6 +79,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'icon-button',
       name: 'Icon Button',
       component: (
         <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center gap-2">
@@ -90,6 +97,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'large-button',
       name: 'Large Button',
       component: (
         <button className="px-8 py-4 bg-indigo-500 text-white text-lg rounded-lg hover:bg-indigo-600 transition-colors font-semibold">
@@ -101,6 +109,7 @@ export default function ButtonsPage() {
 </button>`
     },
     {
+      id: 'disabled-button',
       name: 'Disabled Button',
       component: (
         <button className="px-6 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium" disabled>
@@ -136,9 +145,9 @@ export default function ButtonsPage() {
         </header>
 
         <div className="space-y-8">
-          {variations.map((variation, index) => (
+          {variations.map((variation) => (
             <div
-              key={index}
+              key={variation.id}
               className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl"
             >
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -150,13 +159,13 @@ export default function ButtonsPage() {
               </div>
 
               <button
-                onClick={() => toggleCode(index)}
+                onClick={() => toggleCode(variation.id)}
                 className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                {expandedIndex === index ? 'Hide Code' : 'Show Code'}
+                {expandedIndex === variation.id ? 'Hide Code' : 'Show Code'}
               </button>
 
-              {expandedIndex === index && (
+              {expandedIndex === variation.id && (
                 <div className="mt-4 p-4 bg-gray-900 rounded-lg overflow-x-auto">
                   <pre className="text-sm text-gray-100">
                     <code>{variation.code}</code>
