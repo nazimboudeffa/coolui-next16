@@ -36,7 +36,7 @@ export default function Home() {
       color: 'from-purple-500 to-purple-600'
     },
     {
-      name: 'Cta',
+      name: 'CTA',
       slug: 'cta',
       description: 'Call-to-action banner component',
       count: 2,
