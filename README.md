@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CoolUI Component Library
+
+A modern React component library built with **Next.js 15** and **Tailwind CSS**. CoolUI provides a collection of beautiful, reusable UI components and ready-to-use page templates for building fast, accessible web applications.
+
+## Features
+
+- 🎨 **10+ Basic Components**: Buttons, cards, badges, inputs, alerts, avatars, hero sections, features grids, testimonials, and CTAs.
+- 📄 **Page Templates**: Landing pages (SaaS, Product, Modern, Minimal), dashboards, authentication, e-commerce, pricing, and blog layouts.
+- ⚡ **Built with Next.js 15**: App Router, Server Components, and optimized fonts.
+- 🎯 **Tailwind CSS**: Utility-first styling for rapid customization.
+- ♿ **Accessible**: Semantic HTML and keyboard-friendly components.
 
 ## Getting Started
 
@@ -14,20 +24,49 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to explore the component library.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The home page (`app/page.tsx`) displays all available components and templates. Each component has its own demo page showing usage examples.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes Overview
 
-## Learn More
+### Home
 
-To learn more about Next.js, take a look at the following resources:
+- `/` — Library home with two sections: Basic Components and Templates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Basic Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/components/hero` — Shared Hero section used in landing pages.
+- `/components/features` — Feature grid (2–3 columns).
+- `/components/testimonials` — Quotes with author and optional role.
+- `/components/cta` — Call-to-action banner.
+- `/components/buttons` — Button styles and states.
+- `/components/cards` — Card layouts and designs.
+- `/components/badges` — Status and label badges.
+- `/components/inputs` — Form input variations.
+- `/components/alerts` — Notification and alert messages.
+- `/components/avatars` — User avatar components.
+
+### Templates
+
+- `/templates/landing-pages` — Landing pages hub and details.
+  - Variations:
+    - `/templates/landing-pages/saas`
+    - `/templates/landing-pages/product`
+    - `/templates/landing-pages/modern`
+    - `/templates/landing-pages/minimal`
+- `/templates/dashboards` — Admin and analytics dashboards.
+- `/templates/authentication` — Login and signup pages.
+- `/templates/ecommerce` — Product and checkout pages.
+- `/templates/pricing` — Pricing tables.
+- `/templates/blog` — Blog and article layouts.
+
+## Technology Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org) with App Router
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Language**: TypeScript
+- **Fonts**: [Geist](https://vercel.com/font) optimized with `next/font`
 
 ## Deploy on Vercel
 

@@ -12,6 +12,38 @@ interface ComponentCategory {
 export default function Home() {
   const categories: ComponentCategory[] = [
     {
+      name: 'Hero',
+      slug: 'hero',
+      description: 'Reusable hero section with title, subtitle and CTA',
+      count: 1,
+      icon: '🏔️',
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      name: 'Features',
+      slug: 'features',
+      description: 'Feature grid with 2–3 columns',
+      count: 1,
+      icon: '🧩',
+      color: 'from-green-500 to-green-600'
+    },
+    {
+      name: 'Testimonials',
+      slug: 'testimonials',
+      description: 'Quotes with author and role',
+      count: 1,
+      icon: '💬',
+      color: 'from-purple-500 to-purple-600'
+    },
+    {
+      name: 'Cta',
+      slug: 'cta',
+      description: 'Call-to-action banner component',
+      count: 1,
+      icon: '🎯',
+      color: 'from-pink-500 to-pink-600'
+    },
+    {
       name: 'Buttons',
       slug: 'buttons',
       description: 'Various button styles and states',
