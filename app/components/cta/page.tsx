@@ -104,7 +104,7 @@ export default function CtaComponentPage() {
             CTA Components
           </h1>
           <p className="text-gray-600 text-lg">
-            {variations.length} call-to-action banner variations
+            {variations.length} call-to-action banner variation{variations.length === 1 ? '' : 's'}
           </p>
         </header>
 

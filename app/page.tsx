@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 interface ComponentCategory {
   name: string;
@@ -10,6 +13,36 @@ interface ComponentCategory {
 }
 
 export default function Home() {
+  useEffect(() => {
+    const scrollContainer = document.querySelector('.horizontal-scroll');
+    if (!scrollContainer) return;
+
+    const handleWheel = (e: Event) => {
+      const wheelEvent = e as WheelEvent;
+      if (wheelEvent.deltaY !== 0) {
+        e.preventDefault();
+        scrollContainer.scrollLeft += wheelEvent.deltaY;
+      }
+    };
+
+    scrollContainer.addEventListener('wheel', handleWheel, { passive: false } as AddEventListenerOptions);
+    return () => scrollContainer.removeEventListener('wheel', handleWheel);
+  }, []);
+
+  const scrollLeft = () => {
+    const scrollContainer = document.querySelector('.horizontal-scroll');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    const scrollContainer = document.querySelector('.horizontal-scroll');
+    if (scrollContainer) {
+      scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  };
+
   const categories: ComponentCategory[] = [
     {
       name: 'Hero',
@@ -106,7 +139,7 @@ export default function Home() {
       name: 'Dashboards',
       slug: 'dashboards',
       description: 'Admin and analytics dashboards',
-      count: 5,
+      count: 0,
       icon: '📊',
       color: 'from-cyan-500 to-cyan-600'
     },
@@ -114,7 +147,7 @@ export default function Home() {
       name: 'Authentication',
       slug: 'authentication',
       description: 'Login and signup pages',
-      count: 3,
+      count: 0,
       icon: '🔐',
       color: 'from-violet-500 to-violet-600'
     },
@@ -122,7 +155,7 @@ export default function Home() {
       name: 'E-commerce',
       slug: 'ecommerce',
       description: 'Product and checkout pages',
-      count: 6,
+      count: 0,
       icon: '🛒',
       color: 'from-emerald-500 to-emerald-600'
     },
@@ -130,7 +163,7 @@ export default function Home() {
       name: 'Pricing',
       slug: 'pricing',
       description: 'Pricing table templates',
-      count: 4,
+      count: 0,
       icon: '💰',
       color: 'from-amber-500 to-amber-600'
     },
@@ -138,7 +171,7 @@ export default function Home() {
       name: 'Blog',
       slug: 'blog',
       description: 'Blog and article layouts',
-      count: 5,
+      count: 0,
       icon: '📝',
       color: 'from-rose-500 to-rose-600'
     }
@@ -147,7 +180,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-8">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-12 text-center">
+        <header className="mb-3 text-center">
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             CoolUI Component Library
           </h1>
@@ -155,6 +188,117 @@ export default function Home() {
             Beautiful React & Tailwind CSS Components
           </p>
         </header>
+
+        <section className="py-8 md:py-16">
+          <div className="rounded-2xl bg-linear-to-r from-purple-600 to-blue-600 text-white p-6 md:p-10">
+            <div className="flex flex-col items-center text-center md:flex-row md:text-left md:items-center md:justify-between gap-6 md:gap-8">
+              <div className="flex flex-col items-center md:flex-row md:items-center gap-4 md:gap-6">
+                <img 
+                  src="/icon.png" 
+                  alt="Figma Plugin Icon" 
+                  className="w-14 h-14 md:w-16 md:h-16 rounded-lg shadow-lg shrink-0"
+                />
+                <div>
+                  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">Figma Plugin Coming Soon!</h2>
+                  <p className="mt-1 md:mt-2 text-sm md:text-base text-purple-100">
+                    Convert React (Tailwind) to Figma Design - It&apos;s free!
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto md:shrink-0">
+                <a
+                  href="https://www.figma.com/community/plugin/1575980360466192568/react-tailwind-to-design"
+                  className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 md:py-3 rounded-lg bg-white text-purple-700 font-semibold shadow hover:bg-purple-50 transition-colors text-sm md:text-base whitespace-nowrap"
+                >
+                  Get Plugin
+                </a>
+                <a
+                  href="https://fr.tipeee.com/nazimboudeffa"
+                  className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 md:py-3 rounded-lg bg-purple-700 text-white font-semibold border-2 border-white hover:bg-purple-800 transition-colors text-sm md:text-base whitespace-nowrap"
+                >
+                  ❤️ Donate Instead
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Templates Section - Horizontal Scroll */}
+        <section className="mb-16">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Templates
+            </h2>
+            <p className="text-gray-600">
+              Complete page templates made with the Basic Components
+            </p>
+          </div>
+          <div className="relative -mx-8 px-8 group/scroll">
+            {/* Left Scroll Button */}
+            <button
+              onClick={scrollLeft}
+              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-r from-gray-100 to-transparent items-center justify-start hover:from-gray-200 transition-colors"
+              aria-label="Scroll left"
+            >
+              <div className="ml-2 md:ml-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+            </button>
+            
+            {/* Right Scroll Button */}
+            <button
+              onClick={scrollRight}
+              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-l from-gray-100 to-transparent items-center justify-end hover:from-gray-200 transition-colors"
+              aria-label="Scroll right"
+            >
+              <div className="mr-2 md:mr-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </button>
+
+            <div className="horizontal-scroll flex gap-6 pb-4 snap-x snap-mandatory scrollbar-hide">
+              {templates.map((template) => (
+                <Link
+                  key={template.slug}
+                  href={`/templates/${template.slug}`}
+                  className="group block shrink-0 snap-start w-80"
+                >
+                  <div className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl hover:-translate-y-1 h-full">
+                    <div className={`w-16 h-16 bg-linear-to-br ${template.color} rounded-xl flex items-center justify-center text-3xl mb-4`}>
+                      {template.icon}
+                    </div>
+                    
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                      {template.name}
+                    </h2>
+                    
+                    <p className="text-gray-600 mb-4">
+                      {template.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-semibold text-gray-500">
+                        {template.count} templates
+                      </span>
+                      <svg 
+                        className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Basic Components Section */}
         <section className="mb-16">
@@ -205,54 +349,22 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Templates Section */}
-        <section>
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              Templates
-            </h2>
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-gray-300">
+          <div className="text-center">
             <p className="text-gray-600">
-              Complete page templates ready to use
+              Go back to {' '}
+              <a 
+                href="https://codewithadu.de" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+              >
+                codewithadu.de
+              </a>
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {templates.map((template) => (
-              <Link
-                key={template.slug}
-                href={`/templates/${template.slug}`}
-                className="group block"
-              >
-                <div className="bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl hover:-translate-y-1">
-                  <div className={`w-16 h-16 bg-linear-to-br ${template.color} rounded-xl flex items-center justify-center text-3xl mb-4`}>
-                    {template.icon}
-                  </div>
-                  
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                    {template.name}
-                  </h2>
-                  
-                  <p className="text-gray-600 mb-4">
-                    {template.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-gray-500">
-                      {template.count} templates
-                    </span>
-                    <svg 
-                      className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        </footer>
       </div>
     </main>
   );
