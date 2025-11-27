@@ -47,7 +47,7 @@ export default function Home() {
     {
       name: 'Hero',
       slug: 'hero',
-      description: 'Reusable hero section with title, subtitle and CTA',
+      description: 'Reusable hero section with title',
       count: 2,
       icon: '🏔️',
       color: 'from-blue-500 to-blue-600'
@@ -178,14 +178,32 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-8">
-      <div className="max-w-7xl mx-auto">
+    <main className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
+      {/* GitHub Star Banner */}
+      <div className="bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-3 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm md:text-base">
+            If you like CoolUI, give us a ⭐ on{' '}
+            <a 
+              href="https://github.com/nazimboudeffa/coolui-nextjs" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold underline hover:text-yellow-300 transition-colors"
+            >
+              GitHub
+            </a>
+            {' '}— it helps a lot!
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto p-8">
         <header className="mb-3 text-center">
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            CoolUI Component Library
+            CoolUI
           </h1>
           <p className="text-xl text-gray-600">
-            Beautiful React & Tailwind CSS Components
+            Free Beautiful React & Tailwind CSS Basic Components
           </p>
         </header>
 
@@ -237,7 +255,7 @@ export default function Home() {
             {/* Left Scroll Button */}
             <button
               onClick={scrollLeft}
-              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-r from-gray-100 to-transparent items-center justify-start hover:from-gray-200 transition-colors"
+              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-r from-purple-100 to-transparent items-center justify-start hover:from-purple-200 transition-colors"
               aria-label="Scroll left"
             >
               <div className="ml-2 md:ml-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
@@ -250,7 +268,7 @@ export default function Home() {
             {/* Right Scroll Button */}
             <button
               onClick={scrollRight}
-              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-l from-gray-100 to-transparent items-center justify-end hover:from-gray-200 transition-colors"
+              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-full w-12 md:w-16 bg-linear-to-l from-purple-100 to-transparent items-center justify-end hover:from-purple-200 transition-colors"
               aria-label="Scroll right"
             >
               <div className="mr-2 md:mr-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
