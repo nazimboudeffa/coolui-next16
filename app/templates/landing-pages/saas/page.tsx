@@ -7,7 +7,19 @@ import { Cta } from '../_components/CTA';
 export default function SaaSLanding() {
   return (
     <main className="min-h-screen bg-linear-to-b from-indigo-50 to-white">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-8 relative">
+        {/* View Code Button */}
+        <div className="absolute right-4 top-4">
+          <Link
+            href="/templates/landing-pages/saas/code"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white shadow hover:shadow-md border border-gray-200 text-gray-700 hover:text-blue-700 transition-all text-sm"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+            </svg>
+            View Code
+          </Link>
+        </div>
         <div className="py-6">
           <Link href="/templates/landing-pages" className="text-blue-600 hover:text-blue-700 inline-flex items-center">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
